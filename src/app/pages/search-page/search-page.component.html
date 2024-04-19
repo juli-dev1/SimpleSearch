@@ -1,0 +1,23 @@
+<div class="container">
+    <h1 class="title">POPULAR ARTICLES</h1>
+    <section>
+        <div class="input-box">
+            <label for="search" style="display: none;">Search Articles:</label>
+            <i><mat-icon>search</mat-icon></i>
+            <input type="text" id="search" aria-label="Search input" placeholder="Search here..." [(ngModel)]="searchTerm" (keyup)="inputChanged()">
+            <button class="button" aria-label="Search article">Search</button>
+        </div>
+    </section>
+
+    <section class="article-list">
+        @if(!isDataLoaded) {
+            <mat-spinner diameter="60"></mat-spinner>
+        }@else {
+            @for (article of filteredArticles; track article.id) {
+                <app-article [article]="article" aria-label="Articles card"></app-article>
+            } @empty {
+                <p> No articles found! </p>
+            }
+        }
+    </section>
+</div>
